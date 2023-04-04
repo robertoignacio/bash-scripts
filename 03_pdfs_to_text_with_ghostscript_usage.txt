@@ -1,0 +1,86 @@
+Script for converting pdf files in a directory, to text files, using GhostScript.
+Create a new directory to store the converted files.
+Includes a message that states the process completion.
+
+
+Make sure that you have GhostScript installed on your system before running the bash script, 
+as it is required for the PDF to text conversion. 
+
+To install GhostScript:
+$ sudo apt-get update
+$ sudo apt-get -y install ghostscript
+$ ghostscript --version
+
+
+------------------------------------
+Usage:
+Go to the directory where the script is saved.
+
+Make it executable using the command:
+chmod +x pdfs_to_text_with_ghostscript.sh
+
+Run the script by entering 
+./pdfs_to_text_with_ghostscript.sh path_to_pdf_files_directory
+
+Replace path_to_pdf_files_directory with the path to the directory containing the PDF files that you want to convert to text.
+
+Wait for the script to finish running. 
+The converted text files will be saved in a directory named text_files in the same directory as the PDF files.
+
+Note that a GhostScript pdf to text conversion will create large file texts
+at average of x30 in size from source file size.
+
+
+------------------------------------
+Explanation of the script:
+1. Check to ensure that an argument was passed to the script. 
+If not, it prints an error message with the correct usage, and exits.
+
+
+2. Creates a new directory to store the output text files, 
+based on the name of the PDF directory with "_text" appended.
+
+
+3. Get the number of total files within the origin pdf_dir.
+total_files=$(ls -1 "$pdf_dir"/*.pdf | wc -l)
+
+The command ls -1 "$pdf_dir"/*.pdf lists all files in the directory $pdf_dir that have the extension .pdf. 
+The option -1 ensures that each file is listed on a separate line.
+
+The | symbol is used to pipe the output of ls command to the wc command, which stands for "word count". 
+The wc -l command counts the number of lines in the input, 
+which is equivalent to the number of PDF files in the directory.
+
+Then the command is stored in the variable total_files which stores the number of PDF files in the directory
+The $() syntax is used to capture the output of the command and assign it to the variable.
+
+
+4. Initialize a variable called count, with the value of 0. 
+This variable will be used to keep track of the number of PDF files that have been processed.
+
+
+5. Loop through all pdf_file in the pdf_dir directory.
+
+5.1 Increase count variable by 1, because each loop will process 1 pdf file from the total.
+
+5.2 Print a progress message that shows the total number of files being processed and the number of files that have been converted so far.
+
+5.3 Extract the filename of the currently processed PDF file, without the .pdf extension.
+Using the basename command.
+The filename is then stored in a variable called pdf_file
+
+5.4 Using Ghostscript to convert the current PDF file to text.
+    • gs : Using GhostScript
+    • -q : option, suppresses output from Ghostscript 
+    • -dNOPAUSE : option, disable prompting
+    • -dBATCH : option, exit GhostScript after processing each file from the loop
+    • -sDEVICE=txtwrite : option, outputs to text
+    • -sOutputFile : option, specify the output file name. The output file is saved in the output directory with the same filename as the input file, but with a .txt extension.
+    • "$pdf_file" >/dev/null : Discard any output produced by the command $pdf_file
+
+gs -q -dNOPAUSE -dBATCH -sDEVICE=txtwrite -sOutputFile="$out_dir/$base.txt" "$pdf_file" >/dev/null
+
+5.5 Ends the loop with done
+
+
+6. Prints a message to the console indicating that the PDF to text conversion process has completed.

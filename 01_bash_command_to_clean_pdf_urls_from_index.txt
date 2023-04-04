@@ -1,0 +1,27 @@
+Having an index.html containing urls pointing to pdf files,
+here is a sed command to retrieve those urls and write them to an output text file:
+
+sed -n 's/.*href="\([^"]*\.pdf\)".*/\1/p' index.html > urls_file.txt
+
+
+
+The URLs in the index.html file are enclosed in anchor tags (<a> tags) 
+with the href attribute pointing to the PDF files, to retrieve the URLs:
+
+sed -n 's/.*href="\([^"]*\.pdf\)".*/\1/p' index.html
+
+
+Explanation:
+Here's how the command works:
+
+    • The -n option suppresses normal output so that only the matched URLs are printed.
+    • The s command searches for lines that match the regular expression 
+        .*href="\([^"]*\.pdf\)".* 
+    and replaces them with the contents of the first capture group (\1).
+    • The regular expression matches any line containing href followed by a URL enclosed in quotes and ending in .pdf.
+    • The \( and \) are used to capture the matched URL so that it can be referenced later with \1.
+    • The p at the end of the command tells sed to print the matched URL.
+
+    Note: This ses command considers that the URLs are enclosed in double quotes. 
+    If the URLs are enclosed in single quotes, the sed command will need to be modified.
+:::::::::::::::::::::::::::::::::::::::::::::::

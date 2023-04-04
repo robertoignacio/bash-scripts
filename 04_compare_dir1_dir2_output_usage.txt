@@ -1,0 +1,79 @@
+Given 2 directories, directory one has files with filenames with pdf extension, 
+and directory two has some files with the same filenames as directory one but with txt extension.
+
+If directory one has a file with the same filename without extension that is the same as a file in the directory 2,
+then compare sizes.
+
+Then append ouput a text file where is displayed in each line: 
+from directory one the filename with pdf extension, then its human readable size, 
+next from directory two the filename with txt extension, then its human readable size, 
+next display the factor of size difference between each both two files.
+
+The script requires 2 arguments: the path of directory one path and the path of directory two.
+
+The script will create a file named "sizes.txt" in the current directory with the output of the comparison. 
+Each line of the file will contain: 
+the PDF filename, its human-readable size, the corresponding TXT filename, its human-readable size, and the factor of size difference between PDF/TXT files.
+
+------------------------------------
+Note:
+This script uses the bc utility.
+If not installed in your system, install it with:
+
+$ sudo apt-get install bc
+
+
+Usage:
+
+Go where you stored the script.
+Rename it to something shorter, like "compare_sizes.sh"
+Make it executable with chmod +x compare_sizes.sh
+
+Run it:
+./compare_sizes.sh /path/to/directory1 /path/to/directory2
+
+------------------------------------
+
+Explanation:
+
+1. Check if the script was called with exactly two arguments. 
+If not, display a usage message that shows how to call the script with the correct arguments 
+and exits the script with an exit status of 1 (operation failed)
+
+2. Create two variables to store the paths to two directories passed as arguments.
+dir1, dir2
+
+3. Initialize the variable that will store a reference to the output file, soon to be created.
+output="sizes.txt"
+
+4. Iterate over all PDF files in the first directory (dir1). 
+For each file, the loop body will be executed.
+
+    4.1 For each PDF file in dir1, extract the base filename without the extension.
+    Using the basename command. 
+    This filename will be used to look for the corresponding TXT file in the second directory (dir2).
+
+    4.2 Checks if the filename from dir1 exists in dir2 as a corresponding TXT file. 
+    If it doesn't exist, the loop moves on to the next PDF file. 
+    If it does exist, the loop body continues.
+
+    4.3 If there is a matching filename, use the stat command to get the size of the PDF and TXT files in bytes 
+    and stores them in variables pdf_size and txt_size.
+
+    4.4 These lines use the numfmt command to 
+    Convert the file sizes from bytes to a human-readable format (e.g., "33554432" to "3.2M"). 
+    Get the output as "M" for megabytes, "K" for kilobytes, 1 K = 1024 bytes
+    With padding.
+
+    4.5 Calculates the size difference factor by "output txt" / "original pdf"
+    Using the bc command. 
+    Set number of decimal places to 2.
+
+    4.6 Append the output of each comparison to the output file. 
+    Using the echo command to prints a string that contains the PDF file path, its human-readable size, 
+    the corresponding TXT file path, its human-readable size, 
+    and the size difference factor, separated by commas. 
+    Output to text file.
+
+
+5. Notify the user that the output file has been created.

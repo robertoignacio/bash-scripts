@@ -1,0 +1,38 @@
+A bash script that from a directory lists each filename.extension and the size of it in human readable format.
+
+
+----------------------------------------
+Usage:
+To use the script, go to where is stored, and make it executable using the command
+
+chmod +x get_file_sizes_from_dir_files.sh
+
+
+Then, run the script with the name of the files directory path as an argument:
+SYNTAX: ./get_file_sizes_from_dir_files.sh ARGUMENT
+
+./get_file_sizes_from_dir_files.sh /PATH/TO/DIR
+
+Replace PATH/TO/DIR with the name of the actual directory.
+
+Example:
+$ ./get_file_sizes_from_dir_files /PATH/TO/DIR > output.txt
+----------------------------------------
+
+
+Explanation
+1. The script checks if an argument is provided. If not, it prints a usage message and exits.
+
+2. The script checks if the directory provided as an argument exists. If not, it prints an error message and exits.
+
+3. The script uses a for loop to iterate over all files in the directory provided as an argument.
+
+4. For each file, the script uses the du command to get the size of the file in bytes. 
+The -h option makes the output human-readable. 
+The awk command is used to print only the first column of the output, which contains the size in megabytes.
+
+5. The script uses the basename command to get the filename without the directory path.
+
+6. The script prints the filename and size in megabytes.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::

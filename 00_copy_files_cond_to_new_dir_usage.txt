@@ -1,0 +1,33 @@
+From a directory containing files,
+a bash script that copies all files that match a condition into a new directory. 
+The condition in this script is: being less than 5 MB in size.
+
+
+----------------------
+Usage:
+Make the script executable:
+chmod +x copy_files.sh
+
+Run the script with two arguments:
+./copy_files.sh /path/to/source/directory /path/to/destination/directory
+
+-----------------------
+Explanation of the script:
+1. Checks if the script is called with exactly two arguments. 
+If not, it prints an error message and exits.
+"Usage: $0 <path to source dir> <path to destination dir>"
+
+2. Assign the first argument <path to source dir> to a src_dir variable.
+
+3. Assign the second argument <path to destination dir> to the dest_dir variable.
+
+4. Create the destination directory if it doesn't already exist. 
+The -p option tells mkdir to create parent directories as needed.
+mkdir -p "$dest_dir"
+
+5. Find all files in the source directory that are less than 5 MB in size (-size -5M) 
+and copies them to the destination directory (-exec cp {} "$dest_dir" \;). 
+The -maxdepth 1 option tells find to only search for files in the source directory, not in subdirectories.
+find "$src_dir" -maxdepth 1 -type f -size -5M -exec cp {} "$dest_dir" \;
+
+:::::::::::::::::::::::::::::::::::

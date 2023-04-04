@@ -1,0 +1,41 @@
+In a system using Debian OS, there is a directory called pdf_files that contains several pdf files. 
+Write a bash script to convert the pdf files to text files, and a new directory to store these text files. 
+Include a counter for process completion. 
+
+
+Explanation:
+1. The script sets a counter variable to 0 to keep track of the number of PDF files that have been converted.
+
+2. The script uses the find command to get the total number of PDF files in the directory provided as an argument. 
+The wc command is used to count the number of lines in the output.
+
+3. The script uses a for loop to iterate over all PDF files in the directory provided as an argument. 
+The basename command is used to get the filename without the .pdf extension.
+
+4. For each PDF file, pdftotext is used to convert the file to a text file 
+with the same name as the original PDF file but with the .txt extension. 
+The -layout option preserves the layout of the original PDF file.
+
+5. The counter variable is incremented after each PDF file is converted.
+
+6. The percentage completed is calculated by dividing the counter variable by the total number of PDF files and multiplying by 100.
+
+7. The script prints a message indicating the percentage completed and the name of the PDF file that has been converted.
+
+8. Finally, the script prints a message indicating that the PDF files have been converted to text files and stored in the text_files directory.
+The percentage completed will be updated for each PDF file that is converted.
+
+
+Usage:
+To use the script, save it locally, and make it executable using the command:
+
+chmod +x convert_pdfs_to_text.sh
+
+Then, run the script with the directory path as an argument:
+SYNTAX: ./convert_pdfs_to_text.sh ARGUMENT-PATH
+
+./convert_pdfs_to_text.sh /path/to/pdf_files
+
+Replace /path/to/pdf_files with the actual path to the directory containing the PDF files. 
+The converted text files will be stored in the text_files directory inside the specified directory.
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
