@@ -1,4 +1,4 @@
-# Bash scripts
+# Useful Bash Scripts
 Bash scripts for downloading files, converting files, file compare, file filtering.  
 Each .sh file has a .txt file explaining the usage and explaining the script choices.  
 I use them in these situations:
