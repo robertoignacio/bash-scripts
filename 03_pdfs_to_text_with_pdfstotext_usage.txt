@@ -1,8 +1,23 @@
-In a system using Debian OS, there is a directory called pdf_files that contains several pdf files. 
-Write a bash script to convert the pdf files to text files, and a new directory to store these text files. 
-Include a counter for process completion. 
+Given a directory called pdf_files that contains several pdf files. 
+A bash script to convert the pdf files to text files, and a new directory to store these text files. 
+Includes a counting message for process completion. 
 
 
+-----------------------------------------------
+Usage:
+To use the script, save it locally, and make it executable using the command:
+
+chmod +x convert_pdfs_to_text.sh
+
+Then, run the script with the directory path as an argument:
+SYNTAX: ./convert_pdfs_to_text.sh ARGUMENT-PATH
+
+./convert_pdfs_to_text.sh /path/to/pdf_files
+
+Replace /path/to/pdf_files with the actual path to the directory containing the PDF files. 
+The converted text files will be stored in the text_files directory inside the specified directory.
+
+-----------------------------------------------
 Explanation:
 1. The script sets a counter variable to 0 to keep track of the number of PDF files that have been converted.
 
@@ -25,17 +40,4 @@ The -layout option preserves the layout of the original PDF file.
 8. Finally, the script prints a message indicating that the PDF files have been converted to text files and stored in the text_files directory.
 The percentage completed will be updated for each PDF file that is converted.
 
-
-Usage:
-To use the script, save it locally, and make it executable using the command:
-
-chmod +x convert_pdfs_to_text.sh
-
-Then, run the script with the directory path as an argument:
-SYNTAX: ./convert_pdfs_to_text.sh ARGUMENT-PATH
-
-./convert_pdfs_to_text.sh /path/to/pdf_files
-
-Replace /path/to/pdf_files with the actual path to the directory containing the PDF files. 
-The converted text files will be stored in the text_files directory inside the specified directory.
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
