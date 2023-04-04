@@ -1,18 +1,8 @@
 Given a text file containing lines with urls that point to pdf files,
-write a bash script that takes the text file and downloads them.
+a bash script that takes the text file containing lines of file URLs, and downloads them.
 
-
-Explanation:
-1. The script first checks if a text file containing URLs is provided as an argument. 
-If no argument is provided, it displays usage instructions and exits.
-
-2. The script creates a directory called pdf_files to store the downloaded PDF files if it does not exist already.
-
-3. The script reads the URLs from the text file provided as an argument 
-and downloads each PDF file using wget. 
-The -P option specifies the directory to download the file to, which in this case is the pdf_files directory.
-
-4. Finally, the script prints a message indicating that the PDF files have been downloaded to the pdf_files directory.
+-------------------------------------
+Requires: wget
 
 Usage:
 To use the script, save it locally and make it executable using the command
@@ -26,4 +16,19 @@ SYNTAX: ./script.sh ARGUMENT
 
 Replace url_file.txt with the name of the actual text file containing the URLs. 
 The downloaded PDF files will be stored in the pdf_files directory.
+
+-------------------------------------
+Explanation:
+1. The script first checks if a text file containing URLs is provided as an argument. 
+If no argument is provided, it displays usage instructions and exits.
+
+2. The script creates a directory called pdf_files to store the downloaded PDF files if it does not exist already.
+
+3. The script reads the URLs from the text file provided as an argument 
+and downloads each PDF file using wget. 
+The -P option specifies the directory to download the file to, which in this case is the pdf_files directory.
+
+4. Finally, the script prints a message indicating that the PDF files have been downloaded to the pdf_files directory.
+
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::
