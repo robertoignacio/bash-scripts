@@ -1,0 +1,7 @@
+Count how many files are in a directory, print to console
+
+Usage:
+chmod +x count_files_in_dir.sh
+
+Run:
+./count_files_in_dir.sh path/to/dir
