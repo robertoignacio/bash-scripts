@@ -1,5 +1,12 @@
-Count how many files are in a directory, print to console
+Concept of a script for doing pdf split by page number chunks, to be ingested by AWS Textract, GCP cloud vision or Azure data factory.
+Those services have a max page hard limit, so I will be testing chunks.
 
+Requires: pdftk, pdftk-java
+
+TBA
+
+
+-------------------------------------
 Usage:
 chmod +x split_pdf_by_chunk.sh
 
