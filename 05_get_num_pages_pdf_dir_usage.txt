@@ -1,0 +1,10 @@
+Given a directory path, output a text file containing lines with the filename and its total page number
+
+
+--------------------------------------
+Usage:
+make it executable:
+chmod +x get_num_pages_pdf_dir.sh
+
+Run it:
+./get_num_pages_pdf_dir.sh path/to/pdf-files
