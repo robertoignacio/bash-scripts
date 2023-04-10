@@ -12,6 +12,9 @@ if [ ! -d "$1" ]; then
   exit 1
 fi
 
+# Output file to write results to
+output_file="$1/pages.txt"
+
 # Loop through all PDF files in the directory
 for file in "$1"/*.pdf; do
   # Get the number of pages using pdfinfo
@@ -20,8 +23,6 @@ for file in "$1"/*.pdf; do
   # Construct output string
   output="$file,$pages"
 
-  # Write the output to the output file
-  filename=$(basename -- "$file")
-  filename="${filename%.*}"
-  echo "$output" >> "${filename}_pages.txt"
+  # Append the output to the output file
+  echo "$output" >> "$output_file"
 done
