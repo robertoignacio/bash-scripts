@@ -1,0 +1,7 @@
+Count how many files are in a directory, print to console
+
+Usage:
+chmod +x split_pdf_by_chunk.sh
+
+Run:
+./split_pdf_by_chunk.sh path/to/file
